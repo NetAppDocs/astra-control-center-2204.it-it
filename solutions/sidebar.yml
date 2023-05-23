@@ -1,0 +1,12 @@
+---
+section: solutions
+title: Implementa le app
+entries:
+- title: Implementare Jenkins
+  url: "/solutions/jenkins-deploy-from-helm-chart.html"
+- title: Implementare MariaDB
+  url: "/solutions/mariadb-deploy-from-helm-chart.html"
+- title: Implementare MySQL
+  url: "/solutions/mysql-deploy-from-helm-chart.html"
+- title: Implementare Postgres
+  url: "/solutions/postgres-deploy-from-helm-chart.html"

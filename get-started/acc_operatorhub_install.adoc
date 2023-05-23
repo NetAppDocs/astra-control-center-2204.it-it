@@ -1,0 +1,239 @@
+---
+sidebar: sidebar 
+permalink: get-started/acc_operatorhub_install.html 
+keywords: how to install astra control center, operator, operatorhub, openshift, install astra control center operator 
+summary: Se utilizzi Red Hat OpenShift, puoi installare Astra Control Center usando un operatore. 
+---
+= Installare Astra Control Center utilizzando OpenShift OperatorHub
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/get-started/
+
+
+Se utilizzi Red Hat OpenShift, puoi installare Astra Control Center usando l'operatore certificato Red Hat. Seguire questa procedura per installare Astra Control Center da https://catalog.redhat.com/software/operators/explore["Catalogo Red Hat Ecosystem"^] Oppure utilizzando Red Hat OpenShift Container Platform.
+
+Una volta completata questa procedura, tornare alla procedura di installazione per completare la link:../get-started/install_acc.html#verify-system-status["fasi rimanenti"] per verificare che l'installazione sia riuscita e accedere.
+
+.Di cosa hai bisogno
+* link:requirements.html["Prima di iniziare l'installazione, preparare l'ambiente per l'implementazione di Astra Control Center"].
+* Dal tuo cluster OpenShift, assicurati che tutti gli operatori del cluster siano in buono stato (`available` è `true`):
++
+[listing]
+----
+oc get clusteroperators
+----
+* Dal cluster OpenShift, assicurati che tutti i servizi API siano in buono stato (`available` è `true`):
++
+[listing]
+----
+oc get apiservices
+----
+* Hai creato un indirizzo FQDN per Astra Control Center nel tuo data center.
+* Hai i permessi necessari e l'accesso alla piattaforma container Red Hat OpenShift per eseguire le fasi di installazione descritte.
+
+
+.Fasi
+* <<Scarica e disimballa il bundle Astra Control Center>>
+* <<Installare il plug-in NetApp Astra kubectl>>
+* <<Aggiungere le immagini al registro locale>>
+* <<Individuare la pagina di installazione dell'operatore>>
+* <<Installare l'operatore>>
+* <<Installare Astra Control Center>>
+
+
+
+
+== Scarica e disimballa il bundle Astra Control Center
+
+. Scarica il bundle Astra Control Center (`astra-control-center-[version].tar.gz`) da https://mysupport.netapp.com/site/products/all/details/astra-control-center/downloads-tab["Sito di supporto NetApp"^].
+. Scarica la zip dei certificati e delle chiavi di Astra Control Center dal https://mysupport.netapp.com/site/products/all/details/astra-control-center/downloads-tab["Sito di supporto NetApp"^].
+. (Facoltativo) utilizzare il seguente comando per verificare la firma del bundle:
++
+[listing]
+----
+openssl dgst -sha256 -verify astra-control-center[version].pub -signature <astra-control-center[version].sig astra-control-center[version].tar.gz
+----
+. Estrarre le immagini:
++
+[listing]
+----
+tar -vxzf astra-control-center-[version].tar.gz
+----
+
+
+
+
+== Installare il plug-in NetApp Astra kubectl
+
+NetApp Astra `kubectl` Il plug-in della riga di comando consente di risparmiare tempo durante l'esecuzione di attività comuni associate all'implementazione e all'aggiornamento di Astra Control Center.
+
+.Di cosa hai bisogno
+NetApp fornisce binari per il plug-in per diverse architetture CPU e sistemi operativi. Prima di eseguire questa attività, è necessario conoscere la CPU e il sistema operativo in uso. Sui sistemi operativi Linux e Mac, è possibile utilizzare `uname -a` per raccogliere queste informazioni.
+
+.Fasi
+. Elencare NetApp Astra disponibile `kubectl` Binari del plug-in e annotare il nome del file necessario per il sistema operativo e l'architettura della CPU:
++
+[listing]
+----
+ls kubectl-astra/
+----
+. Copiare il file nella stessa posizione dello standard `kubectl` utility. In questo esempio, il `kubectl` l'utility si trova in `/usr/local/bin` directory. Sostituire `<binary-name>` con il nome del file desiderato:
++
+[listing]
+----
+cp kubectl-astra/<binary-name> /usr/local/bin/kubectl-astra
+----
+
+
+
+
+== Aggiungere le immagini al registro locale
+
+. Passare alla directory Astra:
++
+[listing]
+----
+cd acc
+----
+. Aggiungere i file nella directory dell'immagine di Astra Control Center al registro locale.
++
+
+NOTE: Vedere gli script di esempio per il caricamento automatico delle immagini di seguito.
+
++
+.. Accedere al Registro di sistema:
++
+Docker:
+
++
+[listing]
+----
+docker login [your_registry_path]
+----
++
+Podman:
+
++
+[listing]
+----
+podman login [your_registry_path]
+----
+.. Utilizzare lo script appropriato per caricare le immagini, contrassegnare le immagini e [[substep_image_local_registry_push]]inviare le immagini al registro locale:
++
+Docker:
+
++
+[listing]
+----
+export REGISTRY=[Docker_registry_path]
+for astraImageFile in $(ls images/*.tar) ; do
+  # Load to local cache. And store the name of the loaded image trimming the 'Loaded images: '
+  astraImage=$(docker load --input ${astraImageFile} | sed 's/Loaded image: //')
+  astraImage=$(echo ${astraImage} | sed 's!localhost/!!')
+  # Tag with local image repo.
+  docker tag ${astraImage} ${REGISTRY}/${astraImage}
+  # Push to the local repo.
+  docker push ${REGISTRY}/${astraImage}
+done
+----
++
+Podman:
+
++
+[listing]
+----
+export REGISTRY=[Registry_path]
+for astraImageFile in $(ls images/*.tar) ; do
+  # Load to local cache. And store the name of the loaded image trimming the 'Loaded images: '
+  astraImage=$(podman load --input ${astraImageFile} | sed 's/Loaded image(s): //')
+  astraImage=$(echo ${astraImage} | sed 's!localhost/!!')
+  # Tag with local image repo.
+  podman tag ${astraImage} ${REGISTRY}/${astraImage}
+  # Push to the local repo.
+  podman push ${REGISTRY}/${astraImage}
+done
+----
+
+
+
+
+
+
+== Individuare la pagina di installazione dell'operatore
+
+. Completare una delle seguenti procedure per accedere alla pagina di installazione dell'operatore:
++
+** Dalla console Web Red Hat OpenShift:image:openshift_operatorhub.png["Pagina di installazione di Astra Control Center"]
++
+... Accedere all'interfaccia utente di OpenShift Container Platform.
+... Dal menu laterale, selezionare *Operator (operatori) > OperatorHub*.
+... Selezionare l'operatore di NetApp Astra Control Center.
+... Selezionare *Installa*.
+
+
+** Dal Red Hat Ecosystem Catalog:image:red_hat_catalog.png["Pagina panoramica di Astra Control Center"]
++
+... Selezionare NetApp Astra Control Center https://catalog.redhat.com/software/operators/detail/611fd22aaf489b8bb1d0f274["operatore"].
+... Selezionare *Deploy and Use* (implementazione e utilizzo).
+
+
+
+
+
+
+
+
+== Installare l'operatore
+
+. Completare la pagina *Install Operator* (Installazione operatore) e installare l'operatore:
++
+
+NOTE: L'operatore sarà disponibile in tutti gli spazi dei nomi dei cluster.
+
++
+.. Selezionare lo spazio dei nomi dell'operatore o. `netapp-acc-operator` lo spazio dei nomi verrà creato automaticamente come parte dell'installazione dell'operatore.
+.. Selezionare una strategia di approvazione manuale o automatica.
++
+
+NOTE: Si consiglia l'approvazione manuale. Per ogni cluster dovrebbe essere in esecuzione una sola istanza dell'operatore.
+
+.. Selezionare *Installa*.
++
+
+NOTE: Se è stata selezionata una strategia di approvazione manuale, verrà richiesto di approvare il piano di installazione manuale per questo operatore.
+
+
+
+. Dalla console, accedere al menu OperatorHub e verificare che l'installazione dell'operatore sia stata eseguita correttamente.
+
+
+
+
+== Installare Astra Control Center
+
+. Dalla console nella vista dettagli dell'operatore Astra Control Center, selezionare `Create instance` Nella sezione API fornite.
+. Completare il `Create AstraControlCenter` campo del modulo:
++
+.. Mantenere o regolare il nome di Astra Control Center.
+.. (Facoltativo) attivare o disattivare il supporto automatico. Si consiglia di mantenere la funzionalità di supporto automatico.
+.. Inserire l'indirizzo di Astra Control Center. Non entrare `http://` oppure `https://` nell'indirizzo.
+.. Inserire la versione di Astra Control Center, ad esempio 21.12.60.
+.. Immettere un nome account, un indirizzo e-mail e un cognome amministratore.
+.. Mantenere la policy di recupero del volume predefinita.
+.. In *Image Registry*, immettere il percorso locale del Registro di sistema dell'immagine container. Non entrare `http://` oppure `https://` nell'indirizzo.
+.. Se si utilizza un registro che richiede l'autenticazione, immettere il segreto.
+.. Inserire il nome admin.
+.. Configurare la scalabilità delle risorse.
+.. Mantenere la classe di storage predefinita.
+.. Definire le preferenze di gestione CRD.
+
+
+. Selezionare `Create`.
+
+
+
+
+== Cosa succederà
+
+Verificare che Astra Control Center sia stato installato correttamente e completare il link:../get-started/install_acc.html#verify-system-status["fasi rimanenti"] per accedere. Inoltre, completerai l'implementazione eseguendo anche questa operazione link:setup_overview.html["attività di installazione"].

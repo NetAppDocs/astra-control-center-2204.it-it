@@ -1,0 +1,84 @@
+---
+sidebar: sidebar 
+permalink: solutions/mysql-deploy-from-helm-chart.html 
+keywords: how to set up mysql, how to deploy mysql from helm chart, helm chart, deploy mysql, astra control, kubernetes 
+summary: 'Scopri come implementare MySQL dal grafico di BitNami Helm. Dopo aver implementato MySQL sul cluster Kubernetes, è possibile gestire l"applicazione con Astra Control.' 
+---
+= Implementa MySQL da un grafico Helm
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+Scopri come implementare MySQL da https://bitnami.com/stack/mysql/helm["Grafico di BitNami Helm"^]. Dopo aver implementato MySQL sul cluster Kubernetes, è possibile gestire l'applicazione con Astra Control.
+
+MySQL è un'applicazione validata per Astra Control.
+
+* https://docs.netapp.com/us-en/astra/learn/validated-vs-standard.html["Scopri la differenza tra un'applicazione validata e un'applicazione standard in Astra Control Service"^].
+* https://docs.netapp.com/us-en/astra-control-center/concepts/validated-vs-standard.html["Scopri la differenza tra un'applicazione validata e un'applicazione standard in Astra Control Center"^].
+
+
+Queste istruzioni sono valide sia per Astra Control Service che per Astra Control Center.
+
+
+NOTE: Le applicazioni implementate da Google Marketplace non sono state validate. Alcuni utenti segnalano problemi di rilevamento e/o backup con le implementazioni Google Marketplace di Postgres, MariaDB e MySQL.
+
+
+
+== Requisiti
+
+* Cluster aggiunto ad Astra Control.
++
+
+NOTE: Per Astra Control Center, è possibile aggiungere prima il cluster ad Astra Control Center o aggiungere prima l'applicazione.
+
+* Versioni aggiornate di Helm (versione 3.2+) e Kubectl installate su una macchina locale con il kubeconfig appropriato per il cluster
+
+
+
+
+== Installare MySQL
+
+Due note importanti su questo processo:
+
+* È necessario implementare l'applicazione dopo che il cluster è stato aggiunto ad Astra Control Service, non prima. Astra Control Center accetta le applicazioni prima o dopo l'aggiunta del cluster ad Astra Control Center.
+* Si consiglia di implementare il grafico Helm in uno spazio dei nomi diverso da quello predefinito.
+
+
+.Fasi
+. Aggiungere il repo grafico BitNami:
++
+[listing]
+----
+helm repo add bitnami https://charts.bitnami.com/bitnami
+----
+. Implementare MySQL con il comando:
++
+[listing]
+----
+helm install <name> bitnami/mysql -–namespace <namespace> --create-namespace
+–-set global.storageClass=<storage_class_name>
+----
++
+
+NOTE: Se le dimensioni del volume vengono modificate, utilizzare le unità Kibibyte (Ki), Mebibyte (mi) o Gibibibyte (Gi).
+
++
+È necessario definire la classe di storage solo nelle seguenti situazioni:
+
++
+** Si sta utilizzando Astra Control Service e non si desidera utilizzare la classe di storage predefinita.
+** Stai utilizzando Astra Control Center e non hai ancora importato il cluster in Astra Control Center. In alternativa, è stato importato il cluster, ma non si desidera utilizzare la classe di storage predefinita.
+
+
+
+
+.Risultato
+Ciò consente di:
+
+* Crea uno spazio dei nomi.
+* Implementa MySQL sullo spazio dei nomi.
+
+
+Una volta che i pod sono online, puoi gestire l'applicazione con Astra Control. Astra Control consente di gestire un'applicazione con il suo nome, a livello di spazio dei nomi o utilizzando un'etichetta Helm.

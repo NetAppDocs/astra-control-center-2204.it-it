@@ -1,0 +1,151 @@
+---
+sidebar: sidebar 
+permalink: use/execution-hooks.html 
+keywords: execution hook, snapshot, hook, kubernetes, astra control, astra 
+summary: 'Un gancio di esecuzione è uno script personalizzato che è possibile eseguire prima o dopo uno snapshot di un"applicazione gestita.' 
+---
+= Gestire gli hook di esecuzione delle applicazioni
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/use/
+
+
+[role="lead"]
+Un gancio di esecuzione è uno script personalizzato che è possibile eseguire prima o dopo uno snapshot di un'applicazione gestita. Ad esempio, se si dispone di un'applicazione di database, è possibile utilizzare i ganci di esecuzione per sospendere tutte le transazioni del database prima di uno snapshot e riprendere le transazioni dopo il completamento dello snapshot. Ciò garantisce snapshot coerenti con l'applicazione.
+
+
+
+== Hook di esecuzione predefiniti ed espressioni regolari
+
+Per alcune applicazioni, Astra Control viene fornito con gli hook di esecuzione predefiniti, forniti da NetApp, che gestiscono le operazioni di blocco e scongelamento prima e dopo le snapshot. Astra Control utilizza espressioni regolari per associare l'immagine container di un'applicazione a queste applicazioni:
+
+* MariaDB
++
+** Espressione regolare corrispondente
+
+
+* MySQL
++
+** Espressione regolare corrispondente
+
+
+* PostgreSQL
++
+** Espressione regolare corrispondente
+
+
+
+
+In caso di corrispondenza, gli hook di esecuzione predefiniti forniti da NetApp per l'applicazione vengono visualizzati nell'elenco degli hook di esecuzione attivi dell'applicazione, che vengono eseguiti automaticamente quando vengono eseguite le istantanee dell'applicazione. Se una delle applicazioni personalizzate ha un nome immagine simile che corrisponde a una delle espressioni regolari (e non si desidera utilizzare gli hook di esecuzione predefiniti), è possibile modificare il nome dell'immagine, oppure disattiva il gancio di esecuzione predefinito per l'applicazione e utilizza un gancio personalizzato.
+
+Non è possibile eliminare o modificare gli hook di esecuzione predefiniti.
+
+
+
+== Note importanti sugli hook di esecuzione personalizzati
+
+Quando si pianificano gli hook di esecuzione per le applicazioni, considerare quanto segue.
+
+* Astra Control richiede che gli hook di esecuzione siano scritti nel formato degli script di shell eseguibili.
+* La dimensione dello script è limitata a 128 KB.
+* Astra Control utilizza le impostazioni di esecuzione degli hook e qualsiasi criterio di corrispondenza per determinare quali hook sono applicabili a uno snapshot.
+* Tutti i guasti degli uncini di esecuzione sono guasti di tipo soft; altri hook e snapshot vengono ancora tentati anche se un hook non funziona. Tuttavia, quando un gancio non funziona, viene registrato un evento di avviso nel registro eventi della pagina *attività*.
+* Per creare, modificare o eliminare gli hook di esecuzione, è necessario essere un utente con autorizzazioni Owner, Admin o Member.
+* Se l'esecuzione di un gancio di esecuzione richiede più di 25 minuti, l'hook non riesce, creando una voce del registro eventi con un codice di ritorno "N/A". Qualsiasi snapshot interessata verrà contrassegnata come non riuscita e una voce del registro eventi risultante annoterà il timeout.
+
+
+
+NOTE: Poiché gli hook di esecuzione spesso riducono o disattivano completamente le funzionalità dell'applicazione con cui vengono eseguiti, è consigliabile ridurre al minimo il tempo necessario per l'esecuzione degli hook di esecuzione personalizzati.
+
+Quando viene eseguita una snapshot, gli eventi di esecuzione hook hanno luogo nel seguente ordine:
+
+. Tutti gli hook di esecuzione pre-snapshot predefiniti forniti da NetApp applicabili vengono eseguiti sui container appropriati.
+. Tutti gli hook di esecuzione pre-snapshot personalizzati applicabili vengono eseguiti sui container appropriati. È possibile creare ed eseguire tutti gli hook pre-snapshot personalizzati necessari, ma l'ordine di esecuzione di questi hook prima dell'istantanea non è garantito né configurabile.
+. Viene eseguita l'istantanea.
+. Tutti gli hook di esecuzione post-snapshot personalizzati applicabili vengono eseguiti sui container appropriati. È possibile creare ed eseguire tutti gli hook post-snapshot personalizzati necessari, ma l'ordine di esecuzione di questi hook dopo l'istantanea non è garantito né configurabile.
+. Tutti gli hook di esecuzione post-snapshot predefiniti forniti da NetApp applicabili vengono eseguiti sui container appropriati.
+
+
+
+NOTE: Prima di abilitarli in un ambiente di produzione, è necessario verificare sempre gli script hook di esecuzione. È possibile utilizzare il comando 'kubectl exec' per testare comodamente gli script. Dopo aver attivato gli hook di esecuzione in un ambiente di produzione, testare le snapshot risultanti per assicurarsi che siano coerenti. Per eseguire questa operazione, clonare l'applicazione in uno spazio dei nomi temporaneo, ripristinare lo snapshot e quindi testare l'applicazione.
+
+
+
+== Visualizzare gli hook di esecuzione esistenti
+
+È possibile visualizzare gli hook di esecuzione predefiniti personalizzati o forniti da NetApp per un'applicazione.
+
+.Fasi
+. Accedere a *applicazioni* e selezionare il nome di un'applicazione gestita.
+. Selezionare la scheda *Execution Hooks*.
++
+È possibile visualizzare tutti gli hook di esecuzione attivati o disattivati nell'elenco risultante. È possibile visualizzare lo stato, l'origine e il momento dell'esecuzione di un gancio (pre o post-snapshot). Per visualizzare i registri degli eventi che circondano gli hook di esecuzione, accedere alla pagina *Activity* nell'area di navigazione a sinistra.
+
+
+
+
+
+== Creare un gancio di esecuzione personalizzato
+
+È possibile creare un gancio di esecuzione personalizzato per un'applicazione. Vedere link:execution-hook-examples.html["Esempi di gancio di esecuzione"^] per esempi di gancio. Per creare gli hook di esecuzione, è necessario disporre delle autorizzazioni Owner (Proprietario), Admin (Amministratore) o Member (membro).
+
+
+NOTE: Quando si crea uno script shell personalizzato da utilizzare come uncino di esecuzione, ricordarsi di specificare la shell appropriata all'inizio del file, a meno che non si stiano eseguendo comandi linux o fornendo il percorso completo di un eseguibile.
+
+.Fasi
+. Selezionare *applicazioni*, quindi selezionare il nome di un'applicazione gestita.
+. Selezionare la scheda *Execution Hooks*.
+. Selezionare *Aggiungi un nuovo gancio*.
+. Nell'area *Dettagli gancio*, a seconda dell'esecuzione del gancio, scegliere *Pre-Snapshot* o *Post-Snapshot*.
+. Immettere un nome univoco per l'hook.
+. (Facoltativo) inserire gli argomenti da passare al gancio durante l'esecuzione, premendo il tasto Invio dopo ogni argomento inserito per registrarne ciascuno.
+. Nell'area *Container Images* (immagini container), se il gancio deve essere eseguito su tutte le immagini container contenute nell'applicazione, attivare la casella di controllo *Apply to all container images* (Applica a tutte le immagini container). Se invece il gancio dovrebbe agire solo su una o più immagini container specificate, inserire i nomi delle immagini container nel campo *nomi delle immagini container da abbinare*.
+. Nell'area *script*, eseguire una delle seguenti operazioni:
++
+** Caricare uno script personalizzato.
++
+... Selezionare l'opzione *carica file*.
+... Selezionare un file e caricarlo.
+... Assegnare allo script un nome univoco.
+... (Facoltativo) inserire eventuali note che altri amministratori dovrebbero conoscere sullo script.
+
+
+** Incollare uno script personalizzato dagli Appunti.
++
+... Selezionare l'opzione *Incolla dagli Appunti*.
+... Selezionare il campo di testo e incollare il testo dello script nel campo.
+... Assegnare allo script un nome univoco.
+... (Facoltativo) inserire eventuali note che altri amministratori dovrebbero conoscere sullo script.
+
+
+
+
+. Selezionare *Aggiungi gancio*.
+
+
+
+
+== Disattiva un gancio di esecuzione
+
+È possibile disattivare un gancio di esecuzione se si desidera impedirne temporaneamente l'esecuzione prima o dopo un'istantanea di un'applicazione. Per disattivare gli hook di esecuzione, è necessario disporre delle autorizzazioni Owner, Admin o Member.
+
+.Fasi
+. Selezionare *applicazioni*, quindi selezionare il nome di un'applicazione gestita.
+. Selezionare la scheda *Execution Hooks*.
+. Selezionare il menu Options (Opzioni) nella colonna *Actions* (azioni) per un gancio che si desidera disattivare.
+. Selezionare *Disable* (Disattiva).
+
+
+
+
+== Eliminare un gancio di esecuzione
+
+È possibile rimuovere completamente un gancio di esecuzione se non è più necessario. Per eliminare gli hook di esecuzione, è necessario disporre delle autorizzazioni Owner, Admin o Member.
+
+.Fasi
+. Selezionare *applicazioni*, quindi selezionare il nome di un'applicazione gestita.
+. Selezionare la scheda *Execution Hooks*.
+. Selezionare il menu Options (Opzioni) nella colonna *Actions* (azioni) per il gancio che si desidera eliminare.
+. Selezionare *Delete* (Elimina).
+

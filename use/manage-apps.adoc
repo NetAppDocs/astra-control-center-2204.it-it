@@ -1,0 +1,215 @@
+---
+sidebar: sidebar 
+permalink: use/manage-apps.html 
+keywords: how to manage apps with astra control, discover app, how to manage kubernetes apps, astra control, astra 
+summary: 'Dopo aver aggiunto i cluster Kubernetes ad Astra Control, è possibile installare le applicazioni su quel cluster (al di fuori di Astra Control), quindi andare alla pagina Apps in Astra Control per iniziare a gestire le applicazioni.' 
+---
+= Inizia a gestire le app
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/use/
+
+
+Dopo di lei link:../get-started/setup_overview.html#add-cluster["Aggiungere un cluster alla gestione di Astra Control"], È possibile installare le applicazioni sul cluster (al di fuori di Astra Control), quindi andare alla pagina Apps (applicazioni) in Astra Control per iniziare a gestire le applicazioni e le relative risorse.
+
+Per ulteriori informazioni, vedere link:../get-started/requirements.html#application-management-requirements["Requisiti di gestione delle applicazioni"].
+
+
+
+=== Metodi di installazione delle applicazioni supportati
+
+Astra Control supporta i seguenti metodi di installazione dell'applicazione:
+
+* *Manifest file*: Astra Control supporta le applicazioni installate da un file manifest utilizzando kubectl. Ad esempio:
++
+[listing]
+----
+kubectl apply -f myapp.yaml
+----
+* *Helm 3*: Se utilizzi Helm per installare le app, Astra Control richiede Helm versione 3. La gestione e la clonazione delle applicazioni installate con Helm 3 (o aggiornate da Helm 2 a Helm 3) sono completamente supportate. La gestione delle applicazioni installate con Helm 2 non è supportata.
+* *Applicazioni distribuite dall'operatore*: Astra Control supporta le applicazioni installate con operatori con ambito namespace. Questi operatori sono generalmente progettati con un'architettura "pass-by-value" piuttosto che "pass-by-reference". Di seguito sono riportate alcune applicazioni per operatori che seguono questi modelli:
++
+** https://github.com/k8ssandra/cass-operator/tree/v1.7.1["Apache K8ssandra"^]
+** https://github.com/jenkinsci/kubernetes-operator["Ci Jenkins"^]
+** https://github.com/percona/percona-xtradb-cluster-operator["Cluster XtraDB Percona"^]
+
+
+
+
+Si noti che Astra Control potrebbe non essere in grado di clonare un operatore progettato con un'architettura "pass-by-reference" (ad esempio, l'operatore CockroachDB). Durante questi tipi di operazioni di cloning, l'operatore clonato tenta di fare riferimento ai segreti di Kubernetes dall'operatore di origine, nonostante abbia il proprio nuovo segreto come parte del processo di cloning. L'operazione di clonazione potrebbe non riuscire perché Astra Control non è a conoscenza dei segreti di Kubernetes nell'operatore di origine.
+
+
+NOTE: Un operatore e l'applicazione che installa devono utilizzare lo stesso namespace; potrebbe essere necessario modificare il file .yaml di implementazione per l'operatore per assicurarsi che questo sia il caso.
+
+
+
+== Installa le app sul tuo cluster
+
+Una volta aggiunto il cluster ad Astra Control, è possibile installare le applicazioni o gestire quelle esistenti sul cluster. È possibile gestire qualsiasi applicazione con ambito per uno spazio dei nomi. Una volta che i pod sono online, puoi gestire l'applicazione con Astra Control.
+
+Per assistenza nell'implementazione delle applicazioni validate dai grafici Helm, fare riferimento a quanto segue:
+
+* link:../solutions/mariadb-deploy-from-helm-chart.html["Implementare MariaDB da un grafico Helm"]
+* link:../solutions/mysql-deploy-from-helm-chart.html["Implementa MySQL da un grafico Helm"]
+* link:../solutions/postgres-deploy-from-helm-chart.html["Implementare Postgres da un grafico Helm"]
+* link:../solutions/jenkins-deploy-from-helm-chart.html["Implementare Jenkins da un grafico Helm"]
+
+
+
+
+== Gestire le applicazioni
+
+Astra Control consente di gestire le applicazioni a livello di spazio dei nomi o in base all'etichetta Kubernetes.
+
+
+NOTE: Le applicazioni installate con Helm 2 non sono supportate.
+
+Per gestire le applicazioni, è possibile eseguire le seguenti attività:
+
+* Gestire le applicazioni
++
+** <<Gestire le applicazioni in base allo spazio dei nomi>>
+** <<Gestisci le app in base all'etichetta Kubernetes>>
+
+
+* <<Ignorare le applicazioni>>
+* <<Annulla gestione delle applicazioni>>
+
+
+
+TIP: Astra Control non è un'applicazione standard, ma un'applicazione di sistema. Non si dovrebbe tentare di gestire Astra Control da solo. Per impostazione predefinita, Astra Control non viene visualizzato per la gestione. Per visualizzare le applicazioni di sistema, utilizza il filtro "Mostra app di sistema".
+
+Per istruzioni su come gestire le applicazioni utilizzando l'API Astra Control, vedere link:https://docs.netapp.com/us-en/astra-automation/["Astra Automation e informazioni API"^].
+
+
+NOTE: Dopo un'operazione di protezione dei dati (clone, backup, ripristino) e il successivo ridimensionamento persistente del volume, si verifica un ritardo di venti minuti prima che le nuove dimensioni del volume vengano visualizzate nell'interfaccia utente. L'operazione di protezione dei dati viene eseguita correttamente in pochi minuti ed è possibile utilizzare il software di gestione per il back-end dello storage per confermare la modifica delle dimensioni del volume.
+
+
+
+=== Gestire le applicazioni in base allo spazio dei nomi
+
+La sezione *scoperta* della pagina App mostra gli spazi dei nomi e le applicazioni installate da Helm o personalizzate in tali spazi dei nomi. Puoi scegliere di gestire ogni applicazione singolarmente o a livello di spazio dei nomi. Tutto questo si riduce al livello di granularità necessario per le operazioni di protezione dei dati.
+
+Ad esempio, è possibile impostare una policy di backup per "maria" con cadenza settimanale, ma potrebbe essere necessario eseguire il backup di "mariadb" (che si trova nello stesso namespace) con maggiore frequenza. In base a tali esigenze, sarebbe necessario gestire le applicazioni separatamente e non in un singolo namespace.
+
+Mentre Astra Control consente di gestire separatamente entrambi i livelli della gerarchia (lo spazio dei nomi e le applicazioni in tale spazio dei nomi), la procedura migliore è scegliere uno o l'altro. Le azioni eseguite in Astra Control possono non riuscire se vengono eseguite contemporaneamente sia a livello di spazio dei nomi che di applicazione.
+
+.Fasi
+. Dalla barra di navigazione a sinistra, selezionare *applicazioni*.
+. Selezionare il filtro *rilevato*.
++
+image:acc_apps_discovered4.png["Filtro delle applicazioni rilevate"]
+
+. Visualizzare l'elenco degli spazi dei nomi rilevati. Espandere lo spazio dei nomi per visualizzare le applicazioni e le risorse associate.
++
+Astra Control mostra le applicazioni Helm e le applicazioni con etichetta personalizzata nello spazio dei nomi. Se le etichette Helm sono disponibili, sono contrassegnate da un'icona di tag.
+
+. Esaminare la colonna *Gruppo* per visualizzare lo spazio dei nomi in cui viene eseguita l'applicazione (indicato con l'icona della cartella).
+. Decidere se si desidera gestire ciascuna applicazione singolarmente o a livello di spazio dei nomi.
+. Individuare l'applicazione desiderata al livello desiderato nella gerarchia e selezionare *Manage* (Gestisci) dal menu Options (Opzioni) nella colonna *Actions* (azioni).
+. Se non si desidera gestire un'applicazione, selezionare *Ignora* dal menu Opzioni nella colonna *azioni*.
++
+Ad esempio, se si desidera gestire tutte le applicazioni nello spazio dei nomi "maria" insieme in modo che abbiano le stesse policy di backup e snapshot, è necessario gestire lo spazio dei nomi e ignorare le applicazioni nello spazio dei nomi.
+
+. Per visualizzare l'elenco delle applicazioni gestite, selezionare *Managed* come filtro di visualizzazione.
++
+image:acc_apps_managed3.png["Schermata del filtro delle applicazioni gestite"]
+
++
+
+NOTE: L'applicazione appena aggiunta potrebbe presentare un'icona di avviso sotto la colonna Protected, che indica che il backup non è stato ancora eseguito e non è stato pianificato per i backup.
+
+. Per visualizzare i dettagli di una particolare applicazione, selezionare il nome dell'applicazione.
+
+
+.Risultato
+Le applicazioni che hai scelto di gestire sono ora disponibili nella scheda *Managed*. Tutte le applicazioni ignorate verranno spostate nella scheda *ignored*. Idealmente, la scheda scoperta non mostra alcuna applicazione, in modo che, una volta installate, siano più facili da trovare e gestire.
+
+
+
+=== Gestisci le app in base all'etichetta Kubernetes
+
+Astra Control include un'azione nella parte superiore della pagina Apps denominata *define custom app*. Puoi utilizzare questa azione per gestire le app identificate con un'etichetta Kubernetes. link:../use/define-custom-app.html["Scopri di più sulla definizione di applicazioni personalizzate con l'etichetta Kubernetes"].
+
+.Fasi
+. Dalla barra di navigazione a sinistra, selezionare *applicazioni*.
+. Selezionare *Definisci*.
+. Nella finestra di dialogo *Definisci applicazione personalizzata*, fornire le informazioni necessarie per gestire l'applicazione:
++
+.. *Nuova applicazione*: Immettere il nome visualizzato dell'applicazione.
+.. *Cluster*: Selezionare il cluster in cui risiede l'applicazione.
+.. *Namespace:* selezionare lo spazio dei nomi dell'applicazione.
+.. *Label:* inserire un'etichetta o selezionare un'etichetta dalle risorse sottostanti.
+.. *Risorse selezionate*: Consente di visualizzare e gestire le risorse Kubernetes selezionate che si desidera proteggere (pod, segreti, volumi persistenti e altro ancora).
++
+*** Visualizzare le etichette disponibili espandendo una risorsa e selezionando il numero di etichette.
+*** Selezionare una delle etichette.
++
+Dopo aver scelto un'etichetta, questa viene visualizzata nel campo *etichetta*. Astra Control aggiorna anche la sezione *risorse non selezionate* per mostrare le risorse che non corrispondono all'etichetta selezionata.
+
+
+
+.. *Risorse non selezionate*: Verifica le risorse dell'app che non desideri proteggere.
+
+
+. Selezionare *Definisci applicazione personalizzata*.
+
+
+.Risultato
+Astra Control consente la gestione dell'applicazione. A questo punto, è possibile trovarlo nella scheda *Managed*.
+
+
+
+== Ignorare le applicazioni
+
+Se un'applicazione è stata rilevata, viene visualizzata nell'elenco rilevato. In questo caso, è possibile pulire l'elenco scoperto in modo che le nuove applicazioni appena installate siano più facili da trovare. Oppure, potresti avere applicazioni che gestisci e decidere in seguito di non doverle più gestire. Se non si desidera gestire queste applicazioni, è possibile indicare che devono essere ignorate.
+
+Inoltre, è possibile gestire le applicazioni in un unico namespace insieme (gestito dallo spazio dei nomi). È possibile ignorare le applicazioni che si desidera escludere dallo spazio dei nomi.
+
+.Fasi
+. Dalla barra di navigazione a sinistra, selezionare *applicazioni*.
+. Selezionare *rilevato* come filtro.
+. Selezionare l'applicazione.
+. Dal menu Opzioni nella colonna *azioni*, selezionare *Ignora*.
+. Per non ignorare, selezionare *Unignore*.
+
+
+
+
+== Annulla gestione delle applicazioni
+
+Quando non si desidera più eseguire il backup, lo snapshot o la clonazione di un'applicazione, è possibile interromperne la gestione.
+
+
+NOTE: Se si annulla la gestione di un'applicazione, i backup o le snapshot creati in precedenza andranno persi.
+
+.Fasi
+. Dalla barra di navigazione a sinistra, selezionare *applicazioni*.
+. Selezionare *Managed* come filtro.
+. Selezionare l'applicazione.
+. Dal menu Opzioni nella colonna *azioni*, selezionare *Annulla gestione*.
+. Esaminare le informazioni.
+. Digitare "unManage" per confermare.
+. Selezionare *Sì, Annulla gestione applicazione*.
+
+
+
+
+== E le applicazioni di sistema?
+
+Astra Control rileva anche le applicazioni di sistema in esecuzione su un cluster Kubernetes. Per impostazione predefinita, queste applicazioni di sistema non vengono visualizzate perché è raro che sia necessario eseguirne il backup.
+
+È possibile visualizzare le applicazioni di sistema dalla pagina applicazioni selezionando la casella di controllo *Mostra applicazioni di sistema* sotto il filtro Clusters nella barra degli strumenti.
+
+image:acc_apps_system_apps3.png["Una schermata che mostra l'opzione Show System Apps (Mostra applicazioni di sistema) disponibile nella pagina Apps (applicazioni)."]
+
+
+TIP: Astra Control non è un'applicazione standard, ma un'applicazione di sistema. Non si dovrebbe tentare di gestire Astra Control da solo. Per impostazione predefinita, Astra Control non viene visualizzato per la gestione.
+
+
+
+== Trova ulteriori informazioni
+
+* https://docs.netapp.com/us-en/astra-automation/index.html["Utilizzare l'API di controllo Astra"^]
+

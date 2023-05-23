@@ -1,0 +1,42 @@
+---
+sidebar: sidebar 
+permalink: concepts/licensing.html 
+keywords: license, licensing 
+summary: 'Scopri come le azioni che puoi eseguire con Astra Control Center differiscono in base allo stato della licenza e come l"utilizzo di Astra Control Center influisce sul consumo della licenza.' 
+---
+= Licensing
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/concepts/
+
+
+[role="lead"]
+Astra Control Center richiede l'installazione di una licenza per abilitare la funzionalità completa di gestione dei dati dell'applicazione. Quando si implementa Astra Control Center senza licenza, viene visualizzato un banner nell'interfaccia utente Web, che avvisa che le funzionalità del sistema sono limitate.
+
+Le seguenti operazioni richiedono una licenza valida:
+
+* Gestione di nuove applicazioni
+* Creazione di snapshot o backup
+* Configurazione di un criterio di protezione per la pianificazione di snapshot o backup
+* Ripristino da uno snapshot o da un backup
+* Clonazione da uno snapshot o da uno stato corrente
+
+
+
+NOTE: È possibile aggiungere un cluster, aggiungere un bucket e gestire un backend di storage Astra Data Store senza licenza. Tuttavia, è necessaria una licenza Astra Control Center valida per gestire le applicazioni utilizzando Astra Data Store come back-end di storage.
+
+
+
+== Come viene calcolato il consumo delle licenze
+
+Quando si aggiunge un nuovo cluster ad Astra Control Center, non viene contato per ottenere licenze consumate fino a quando almeno un'applicazione in esecuzione sul cluster non viene gestita da Astra Control Center. È inoltre possibile aggiungere un backend di storage Astra Data Store ad Astra Control Center senza influire sul consumo delle licenze. Questo consente di gestire un back-end Astra Data Store da un sistema Astra Control Center senza licenza.
+
+Quando si inizia a gestire un'applicazione su un cluster, le unità CPU del cluster vengono incluse nel calcolo del consumo di licenza di Astra Control Center.
+
+
+
+== Trova ulteriori informazioni
+
+* link:../use/update-licenses.html["Aggiornare una licenza esistente"]
+

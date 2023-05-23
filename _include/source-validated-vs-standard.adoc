@@ -1,0 +1,35 @@
+= Applicazioni validate
+:allow-uri-read: 
+
+
+Ci sono due tipi di applicazioni che puoi portare ad Astra Control: Validate e standard. Scopri la differenza tra queste due categorie e i potenziali impatti sui tuoi progetti e sulla tua strategia.
+
+
+NOTE: È allettante pensare a queste due categorie come "supportate" e "non supportate". Tuttavia, come si vedrà, in Astra Control non esiste un'applicazione "non supportata". Puoi aggiungere qualsiasi applicazione ad Astra Control, anche se le app validate hanno più infrastruttura costruita intorno ai flussi di lavoro di Astra Control rispetto alle app standard.
+
+
+
+== Applicazioni validate
+
+Le applicazioni validate per Astra Control includono:
+
+* MySQL 8.0.25
+* MariaDB 10.5.9
+* PostgreSQL 11.12
+* Jenkins 2.277.4 LTS e 2.289.1 LTS
+
+
+L'elenco delle applicazioni validate rappresenta le applicazioni riconosciute da Astra Control. Il team di Astra Control ha analizzato e confermato che queste applicazioni sono state completamente testate per il ripristino. Astra Control esegue flussi di lavoro personalizzati per garantire la coerenza a livello di applicazione di snapshot e backup.
+
+Se un'applicazione viene convalidata, il team di Astra Control ha identificato e implementato i passaggi che possono essere intrapresi per interrompere l'applicazione prima di creare uno snapshot per ottenere uno snapshot coerente con l'applicazione. Ad esempio, quando Astra Control esegue un backup di un database PostgreSQL, prima di tutto il database viene posto in pausa. Una volta completato il backup, Astra Control ripristina il normale funzionamento del database.
+
+Indipendentemente dal tipo di applicazione utilizzata con Astra Control, verificate sempre il flusso di lavoro di backup e ripristino per assicurarvi di soddisfare i vostri requisiti di disaster recovery.
+
+
+
+== Applicazioni standard
+
+Altre applicazioni, tra cui programmi personalizzati, sono considerate applicazioni standard. Puoi aggiungere e gestire le applicazioni standard attraverso Astra Control. Puoi anche creare snapshot e backup di base coerenti con il crash di un'applicazione standard. Tuttavia, questi non sono stati completamente testati per ripristinare l'applicazione al suo stato originale.
+
+
+TIP: Astra Control non è un'applicazione standard, ma un'applicazione di sistema. Per impostazione predefinita, Astra Control non viene visualizzato per la gestione. Non si dovrebbe tentare di gestire Astra Control da solo.

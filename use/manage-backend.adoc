@@ -1,0 +1,219 @@
+---
+sidebar: sidebar 
+permalink: use/manage-backend.html 
+keywords: how to use astra control, what is astra storage, how to set up astra storage backend, ontap storage in astra, backend storage in astra 
+summary: Aggiungi storage per le tue applicazioni Kubernetes on-premise. Astra Control rileva e utilizza le risorse già implementate, tra cui Trident, ONTAP e le classi di storage associate. 
+---
+= Gestire il back-end dello storage
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/use/
+
+
+La gestione dei cluster di storage in Astra Control come back-end dello storage consente di ottenere collegamenti tra volumi persistenti (PVS) e il back-end dello storage, oltre a metriche di storage aggiuntive. È possibile monitorare la capacità dello storage e i dettagli relativi allo stato di salute, incluse le prestazioni, se il centro di controllo Astra è connesso a Cloud Insights.
+
+Per istruzioni su come gestire i back-end dello storage utilizzando l'API Astra Control, vedere link:https://docs.netapp.com/us-en/astra-automation/["Astra Automation e informazioni API"^].
+
+È possibile completare le seguenti attività relative alla gestione di un backend di storage:
+
+* link:../get-started/setup_overview.html#add-a-storage-backend["Aggiungere un backend di storage"]
+* <<Visualizza i dettagli del back-end dello storage>>
+* <<Annullare la gestione di un backend di storage>>
+* <<Aggiornare una licenza di back-end per lo storage>>
+* <<Aggiunta di nodi a un cluster di storage back-end>>
+* <<Rimuovere un backend di storage>>
+
+
+
+
+== Visualizza i dettagli del back-end dello storage
+
+È possibile visualizzare le informazioni di back-end dello storage dalla dashboard o dall'opzione Backend.
+
+Nella pagina Storage backend Details (Dettagli back-end storage), per Astra Data Store, sono disponibili le seguenti informazioni:
+
+* Cluster Astra Data Store
++
+** Throughput, IOPS e latenza
+** Capacità utilizzata rispetto alla capacità totale
+
+
+* Per ogni volume cluster Astra Data Store
++
+** Capacità utilizzata rispetto alla capacità totale
+** Throughput
+
+
+
+
+
+
+=== Visualizza i dettagli del back-end dello storage dalla dashboard
+
+.Fasi
+. Dalla barra di navigazione a sinistra, selezionare *Dashboard*.
+. Esaminare la sezione Storage backend che mostra lo stato:
++
+** *Non integro*: Lo storage non è in uno stato ottimale. Ciò potrebbe essere dovuto a un problema di latenza o a un'applicazione degradata, ad esempio, a causa di un problema di container.
+** *Tutto sano*: Lo storage è stato gestito ed è in uno stato ottimale.
+** *Scoperto*: Lo storage è stato scoperto, ma non gestito da Astra Control.
+
+
+
+
+
+
+=== Visualizza i dettagli del back-end dello storage dall'opzione Backend
+
+Visualizza informazioni sullo stato, la capacità e le performance del back-end (throughput IOPS e/o latenza).
+
+Con una connessione a Cloud Insights, è possibile visualizzare i volumi utilizzati dalle applicazioni Kubernetes, che vengono memorizzati in un backend di storage selezionato.
+
+.Fasi
+. Nell'area di navigazione a sinistra, selezionare *Backend*.
+. Selezionare il backend dello storage.
++
+
+TIP: Se si è connessi a NetApp Cloud Insights, gli estratti di dati da Cloud Insights vengono visualizzati nella pagina backend.
+
++
+image:../use/acc_backends_ci_connection2.png["Una schermata della pagina Backend"]
+
+. Per accedere direttamente a Cloud Insights, selezionare l'icona *Cloud Insights* accanto all'immagine delle metriche.
+
+
+
+
+== Annullare la gestione di un backend di storage
+
+È possibile annullare la gestione del backend.
+
+.Fasi
+. Dalla barra di navigazione a sinistra, selezionare *Backend*.
+. Selezionare il backend dello storage.
+. Dal menu Opzioni nella colonna *azioni*, selezionare *Annulla gestione*.
+. Digitare "unManage" per confermare l'azione.
+. Selezionare *Sì, Annulla gestione del backend di storage*.
+
+
+
+
+== Rimuovere un backend di storage
+
+È possibile rimuovere un backend di storage non più in uso. Questa operazione può essere utile per mantenere la configurazione semplice e aggiornata.
+
+
+TIP: Se si rimuove un backend Astra Data Store, questo non deve essere stato creato da vCenter.
+
+.Di cosa hai bisogno
+* Assicurarsi che il backend dello storage non sia gestito.
+* Assicurarsi che il backend dello storage non abbia volumi associati al cluster Astra Data Store.
+
+
+.Fasi
+. Dalla barra di navigazione a sinistra, selezionare *Backend*.
+. Se il backend viene gestito, annullarne la gestione.
++
+.. Selezionare *Managed*.
+.. Selezionare il backend dello storage.
+.. Dall'opzione *azioni*, selezionare *Annulla gestione*.
+.. Digitare "unManage" per confermare l'azione.
+.. Selezionare *Sì, Annulla gestione del backend di storage*.
+
+
+. Selezionare *rilevato*.
++
+.. Selezionare il backend dello storage.
+.. Dall'opzione *azioni*, selezionare *Rimuovi*.
+.. Digitare "remove" per confermare l'azione.
+.. Selezionare *Sì, rimuovere il backend di storage*.
+
+
+
+
+
+
+== Aggiornare una licenza di back-end per lo storage
+
+È possibile aggiornare la licenza per un backend di storage Astra Data Store per supportare un'implementazione più ampia o funzionalità avanzate.
+
+.Di cosa hai bisogno
+* Un back-end storage Astra Data Store implementato e gestito
+* Un file di licenza Astra Data Store (contatta il tuo commerciale NetApp per acquistare una licenza Astra Data Store)
+
+
+.Fasi
+. Dalla barra di navigazione a sinistra, selezionare *Backend*.
+. Selezionare il nome di un backend di storage.
+. In *Basic Information* (informazioni di base), viene visualizzato il tipo di licenza installata.
++
+Se si passa il mouse sopra le informazioni sulla licenza, viene visualizzata una finestra a comparsa con ulteriori informazioni, come ad esempio la scadenza e le informazioni sui diritti.
+
+. In *licenza*, selezionare l'icona di modifica accanto al nome della licenza.
+. Nella pagina *Aggiorna licenza*, eseguire una delle seguenti operazioni:
++
+|===
+| Stato della licenza | Azione 
+
+
+| Almeno una licenza è stata aggiunta ad Astra Data Store.  a| 
+Selezionare una licenza dall'elenco.
+
+
+
+| Nessuna licenza aggiunta ad Astra Data Store.  a| 
+.. Selezionare il pulsante *Aggiungi*.
+.. Selezionare un file di licenza da caricare.
+.. Selezionare *Aggiungi* per caricare il file di licenza.
+
+
+|===
+. Selezionare *Aggiorna*.
+
+
+
+
+== Aggiunta di nodi a un cluster di storage back-end
+
+È possibile aggiungere nodi a un cluster Astra Data Store, fino al numero di nodi supportati dal tipo di licenza installata per Astra Data Store.
+
+.Di cosa hai bisogno
+* Un back-end di storage Astra Data Store distribuito e concesso in licenza
+* È stato aggiunto il pacchetto software Astra Data Store in Astra Control Center
+* Uno o più nuovi nodi da aggiungere al cluster
+
+
+.Fasi
+. Dalla barra di navigazione a sinistra, selezionare *Backend*.
+. Selezionare il nome di un backend di storage.
+. In Basic Information (informazioni di base), è possibile visualizzare il numero di nodi in questo cluster di back-end dello storage.
+. In *nodi*, selezionare l'icona di modifica accanto al numero di nodi.
+. Nella pagina *Add Nodes* (Aggiungi nodi), immettere le informazioni relative al nuovo nodo o ai nuovi nodi:
++
+.. Assegnare un'etichetta di nodo per ciascun nodo.
+.. Effettuare una delle seguenti operazioni:
++
+*** Se si desidera che Astra Data Store utilizzi sempre il numero massimo di nodi disponibili in base alla licenza, attivare la casella di controllo *Usa sempre fino al numero massimo di nodi consentiti*.
+*** Se non si desidera che Astra Data Store utilizzi sempre il numero massimo di nodi disponibili, selezionare il numero desiderato di nodi totali da utilizzare.
+
+
+.. Se è stato implementato Astra Data Store con i domini di protezione attivati, assegnare il nuovo nodo o i nuovi nodi ai domini di protezione.
+
+
+. Selezionare *Avanti*.
+. Inserire l'indirizzo IP e le informazioni di rete per ogni nuovo nodo. Inserire un singolo indirizzo IP per un singolo nodo o un pool di indirizzi IP per più nuovi nodi.
++
+Se Astra Data Store è in grado di utilizzare gli indirizzi IP configurati durante l'implementazione, non è necessario inserire alcuna informazione sull'indirizzo IP.
+
+. Selezionare *Avanti*.
+. Esaminare la configurazione del nuovo nodo o dei nuovi nodi.
+. Selezionare *Aggiungi nodi*.
+
+
+
+
+== Trova ulteriori informazioni
+
+* https://docs.netapp.com/us-en/astra-automation/index.html["Utilizzare l'API di controllo Astra"^]
+
