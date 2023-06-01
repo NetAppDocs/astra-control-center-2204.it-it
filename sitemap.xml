@@ -36,7 +36,7 @@
     <url>
       <loc>https://docs.netapp.com/it-it/astra-control-center-2204/get-started/add-cluster-reqs.html</loc>
       
-      <lastmod>2023-05-23T22:22:39+00:00</lastmod>
+      <lastmod>2023-06-01T23:39:14+00:00</lastmod>
       
     </url>
   
@@ -50,14 +50,14 @@
     <url>
       <loc>https://docs.netapp.com/it-it/astra-control-center-2204/rest-api/api-intro.html</loc>
       
-      <lastmod>2023-05-23T22:22:39+00:00</lastmod>
+      <lastmod>2023-06-01T23:39:14+00:00</lastmod>
       
     </url>
   
     <url>
       <loc>https://docs.netapp.com/it-it/astra-control-center-2204/concepts/architecture.html</loc>
       
-      <lastmod>2023-05-23T22:22:39+00:00</lastmod>
+      <lastmod>2023-06-01T23:39:14+00:00</lastmod>
       
     </url>
   
@@ -71,7 +71,7 @@
     <url>
       <loc>https://docs.netapp.com/it-it/astra-control-center-2204/use/clone-apps.html</loc>
       
-      <lastmod>2023-05-23T22:22:39+00:00</lastmod>
+      <lastmod>2023-06-01T23:39:14+00:00</lastmod>
       
     </url>
   
@@ -134,7 +134,7 @@
     <url>
       <loc>https://docs.netapp.com/it-it/astra-control-center-2204/get-started/install_acc-cvo.html</loc>
       
-      <lastmod>2023-05-23T22:22:39+00:00</lastmod>
+      <lastmod>2023-06-01T23:39:14+00:00</lastmod>
       
     </url>
   
@@ -155,14 +155,14 @@
     <url>
       <loc>https://docs.netapp.com/it-it/astra-control-center-2204/concepts/intro.html</loc>
       
-      <lastmod>2023-05-23T22:22:39+00:00</lastmod>
+      <lastmod>2023-06-01T23:39:14+00:00</lastmod>
       
     </url>
   
     <url>
       <loc>https://docs.netapp.com/it-it/astra-control-center-2204/solutions/jenkins-deploy-from-helm-chart.html</loc>
       
-      <lastmod>2023-05-23T22:22:39+00:00</lastmod>
+      <lastmod>2023-06-01T23:39:14+00:00</lastmod>
       
     </url>
   
@@ -190,14 +190,14 @@
     <url>
       <loc>https://docs.netapp.com/it-it/astra-control-center-2204/legal-notices.html</loc>
       
-      <lastmod>2023-05-23T22:22:39+00:00</lastmod>
+      <lastmod>2023-06-01T23:39:14+00:00</lastmod>
       
     </url>
   
     <url>
       <loc>https://docs.netapp.com/it-it/astra-control-center-2204/legal-notices_noinclude.html</loc>
       
-      <lastmod>2023-05-23T22:22:39+00:00</lastmod>
+      <lastmod>2023-06-01T23:39:14+00:00</lastmod>
       
     </url>
   
@@ -211,21 +211,21 @@
     <url>
       <loc>https://docs.netapp.com/it-it/astra-control-center-2204/use/manage-apps.html</loc>
       
-      <lastmod>2023-05-23T22:22:39+00:00</lastmod>
+      <lastmod>2023-06-01T23:39:14+00:00</lastmod>
       
     </url>
   
     <url>
       <loc>https://docs.netapp.com/it-it/astra-control-center-2204/use/manage-backend.html</loc>
       
-      <lastmod>2023-05-23T22:22:39+00:00</lastmod>
+      <lastmod>2023-06-01T23:39:14+00:00</lastmod>
       
     </url>
   
     <url>
       <loc>https://docs.netapp.com/it-it/astra-control-center-2204/use/manage-buckets.html</loc>
       
-      <lastmod>2023-05-23T22:22:39+00:00</lastmod>
+      <lastmod>2023-06-01T23:39:14+00:00</lastmod>
       
     </url>
   
@@ -260,21 +260,21 @@
     <url>
       <loc>https://docs.netapp.com/it-it/astra-control-center-2204/use/manage-roles.html</loc>
       
-      <lastmod>2023-05-23T22:22:39+00:00</lastmod>
+      <lastmod>2023-06-01T23:39:14+00:00</lastmod>
       
     </url>
   
     <url>
       <loc>https://docs.netapp.com/it-it/astra-control-center-2204/use/manage-users.html</loc>
       
-      <lastmod>2023-05-23T22:22:39+00:00</lastmod>
+      <lastmod>2023-06-01T23:39:14+00:00</lastmod>
       
     </url>
   
     <url>
       <loc>https://docs.netapp.com/it-it/astra-control-center-2204/solutions/mariadb-deploy-from-helm-chart.html</loc>
       
-      <lastmod>2023-05-23T22:22:39+00:00</lastmod>
+      <lastmod>2023-06-01T23:39:14+00:00</lastmod>
       
     </url>
   
@@ -288,21 +288,21 @@
     <url>
       <loc>https://docs.netapp.com/it-it/astra-control-center-2204/solutions/mysql-deploy-from-helm-chart.html</loc>
       
-      <lastmod>2023-05-23T22:22:39+00:00</lastmod>
+      <lastmod>2023-06-01T23:39:14+00:00</lastmod>
       
     </url>
   
     <url>
       <loc>https://docs.netapp.com/it-it/astra-control-center-2204/solutions/postgres-deploy-from-helm-chart.html</loc>
       
-      <lastmod>2023-05-23T22:22:39+00:00</lastmod>
+      <lastmod>2023-06-01T23:39:14+00:00</lastmod>
       
     </url>
   
     <url>
       <loc>https://docs.netapp.com/it-it/astra-control-center-2204/use/protect-apps.html</loc>
       
-      <lastmod>2023-05-23T22:22:39+00:00</lastmod>
+      <lastmod>2023-06-01T23:39:14+00:00</lastmod>
       
     </url>
   
@@ -316,7 +316,7 @@
     <url>
       <loc>https://docs.netapp.com/it-it/astra-control-center-2204/get-started/quick-start.html</loc>
       
-      <lastmod>2023-05-23T22:22:39+00:00</lastmod>
+      <lastmod>2023-06-01T23:39:14+00:00</lastmod>
       
     </url>
   
@@ -330,7 +330,7 @@
     <url>
       <loc>https://docs.netapp.com/it-it/astra-control-center-2204/use/restore-apps.html</loc>
       
-      <lastmod>2023-05-23T22:22:39+00:00</lastmod>
+      <lastmod>2023-06-01T23:39:14+00:00</lastmod>
       
     </url>
   
@@ -344,14 +344,14 @@
     <url>
       <loc>https://docs.netapp.com/it-it/astra-control-center-2204//search.html</loc>
       
-      <lastmod>2023-05-24T08:36:21+00:00</lastmod>
+      <lastmod>2023-06-01T23:39:28+00:00</lastmod>
       
     </url>
   
     <url>
       <loc>https://docs.netapp.com/it-it/astra-control-center-2204/get-started/setup_overview.html</loc>
       
-      <lastmod>2023-05-23T22:22:39+00:00</lastmod>
+      <lastmod>2023-06-01T23:39:14+00:00</lastmod>
       
     </url>
   
@@ -379,7 +379,7 @@
     <url>
       <loc>https://docs.netapp.com/it-it/astra-control-center-2204/use/update-licenses.html</loc>
       
-      <lastmod>2023-05-23T22:22:39+00:00</lastmod>
+      <lastmod>2023-06-01T23:39:14+00:00</lastmod>
       
     </url>
   
@@ -421,7 +421,7 @@
     <url>
       <loc>https://docs.netapp.com/it-it/astra-control-center-2204/use/view-clusters.html</loc>
       
-      <lastmod>2023-05-23T22:22:39+00:00</lastmod>
+      <lastmod>2023-06-01T23:39:14+00:00</lastmod>
       
     </url>
   
