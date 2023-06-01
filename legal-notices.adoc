@@ -55,4 +55,4 @@ I file di avviso forniscono informazioni sul copyright e sulle licenze di terze 
 
 == Licenza API Astra Control
 
-https://docs.netapp.com/us-en/astra-automation/media/astra-api-license.pdf[]
+https://docs.netapp.com/us-en/astra-automation-2204/media/astra-api-license.pdf[]

@@ -11,7 +11,7 @@ summary: Scopri come gestire i ruoli utente aggiungendo un vincolo al ruolo.
 :imagesdir: ../media/concepts/
 
 
-È possibile gestire i ruoli aggiungendo vincoli dello spazio dei nomi e limitando i ruoli utente a tali vincoli. In questo modo è possibile controllare l'accesso alle risorse all'interno dell'organizzazione. È possibile utilizzare l'interfaccia utente di Astra Control o. https://docs.netapp.com/us-en/astra-automation/index.html["L'API Astra Control"^] per gestire i ruoli.
+È possibile gestire i ruoli aggiungendo vincoli dello spazio dei nomi e limitando i ruoli utente a tali vincoli. In questo modo è possibile controllare l'accesso alle risorse all'interno dell'organizzazione. È possibile utilizzare l'interfaccia utente di Astra Control o. https://docs.netapp.com/us-en/astra-automation-2204/index.html["L'API Astra Control"^] per gestire i ruoli.
 
 
 

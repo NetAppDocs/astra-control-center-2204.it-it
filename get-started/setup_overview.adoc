@@ -24,7 +24,7 @@ Il centro di controllo Astra supporta e monitora l'archivio dati ONTAP e Astra c
 
 == Aggiungere una licenza per Astra Control Center
 
-È possibile aggiungere una nuova licenza utilizzando l'interfaccia utente o. https://docs.netapp.com/us-en/astra-automation/index.html["API"^] Per ottenere la funzionalità completa di Astra Control Center. Senza una licenza, l'utilizzo di Astra Control Center è limitato alla gestione degli utenti e all'aggiunta di nuovi cluster.
+È possibile aggiungere una nuova licenza utilizzando l'interfaccia utente o. https://docs.netapp.com/us-en/astra-automation-2204/index.html["API"^] Per ottenere la funzionalità completa di Astra Control Center. Senza una licenza, l'utilizzo di Astra Control Center è limitato alla gestione degli utenti e all'aggiunta di nuovi cluster.
 
 Per ulteriori informazioni sul calcolo delle licenze, vedere link:../concepts/licensing.html["Licensing"].
 
@@ -348,6 +348,6 @@ Ora che hai effettuato l'accesso e aggiunto i cluster ad Astra Control Center, s
 [discrete]
 == Trova ulteriori informazioni
 
-* https://docs.netapp.com/us-en/astra-automation/index.html["Utilizzare l'API di controllo Astra"^]
+* https://docs.netapp.com/us-en/astra-automation-2204/index.html["Utilizzare l'API di controllo Astra"^]
 * link:../release-notes/known-issues.html["Problemi noti"]
 

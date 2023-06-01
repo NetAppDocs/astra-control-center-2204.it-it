@@ -12,7 +12,7 @@ summary: 'Astra può ripristinare la configurazione dell"applicazione e lo stora
 
 
 [role="lead"]
-Astra Control può ripristinare l'applicazione da uno snapshot o da un backup. Il ripristino da uno snapshot esistente sarà più rapido quando si ripristina l'applicazione nello stesso cluster. È possibile utilizzare l'interfaccia utente di Astra Control o. https://docs.netapp.com/us-en/astra-automation/index.html["L'API Astra Control"^] per ripristinare le applicazioni.
+Astra Control può ripristinare l'applicazione da uno snapshot o da un backup. Il ripristino da uno snapshot esistente sarà più rapido quando si ripristina l'applicazione nello stesso cluster. È possibile utilizzare l'interfaccia utente di Astra Control o. https://docs.netapp.com/us-en/astra-automation-2204/index.html["L'API Astra Control"^] per ripristinare le applicazioni.
 
 .A proposito di questa attività
 * Si consiglia vivamente di eseguire un'istantanea o un backup dell'applicazione prima di ripristinarla. In questo modo, è possibile clonare lo snapshot o il backup nel caso in cui il ripristino non abbia esito positivo.

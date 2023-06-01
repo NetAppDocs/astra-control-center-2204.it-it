@@ -11,7 +11,7 @@ summary: Aggiungi utenti al tuo sistema Astra Control Center e rimuovi utenti ch
 :imagesdir: ../media/use/
 
 
-È possibile invitare, aggiungere, rimuovere e modificare gli utenti dell'installazione di Astra Control Center utilizzando l'interfaccia utente di Astra Control. È possibile utilizzare l'interfaccia utente di Astra Control o. https://docs.netapp.com/us-en/astra-automation/index.html["L'API Astra Control"^] per gestire gli utenti.
+È possibile invitare, aggiungere, rimuovere e modificare gli utenti dell'installazione di Astra Control Center utilizzando l'interfaccia utente di Astra Control. È possibile utilizzare l'interfaccia utente di Astra Control o. https://docs.netapp.com/us-en/astra-automation-2204/index.html["L'API Astra Control"^] per gestire gli utenti.
 
 
 

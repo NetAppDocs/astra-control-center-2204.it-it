@@ -11,7 +11,7 @@ summary: Proteggi le tue applicazioni eseguendo snapshot e backup utilizzando un
 :imagesdir: ../media/use/
 
 
-Proteggi le tue applicazioni eseguendo snapshot e backup utilizzando una policy di protezione automatica o ad-hoc. È possibile utilizzare l'interfaccia utente Astra o. https://docs.netapp.com/us-en/astra-automation/index.html["L'API Astra Control"^] per proteggere le applicazioni.
+Proteggi le tue applicazioni eseguendo snapshot e backup utilizzando una policy di protezione automatica o ad-hoc. È possibile utilizzare l'interfaccia utente Astra o. https://docs.netapp.com/us-en/astra-automation-2204/index.html["L'API Astra Control"^] per proteggere le applicazioni.
 
 
 NOTE: Se utilizzi Helm per implementare le app, Astra Control Center richiede Helm versione 3. La gestione e la clonazione delle applicazioni implementate con Helm 3 (o aggiornate da Helm 2 a Helm 3) sono completamente supportate. Le app implementate con Helm 2 non sono supportate.
@@ -94,7 +94,7 @@ Astra Control Center crea un backup dell'applicazione.
 NOTE: Se la rete presenta un'interruzione o è eccessivamente lenta, potrebbe verificarsi un timeout dell'operazione di backup. In questo modo, il backup non viene eseguito correttamente.
 
 
-NOTE: Non esiste alcun modo per interrompere un backup in esecuzione. Se è necessario eliminare il backup, attendere che sia stato completato, quindi seguire le istruzioni riportate in <<Eliminare i backup>>. Per eliminare un backup non riuscito, https://docs.netapp.com/us-en/astra-automation/index.html["Utilizzare l'API di controllo Astra"^].
+NOTE: Non esiste alcun modo per interrompere un backup in esecuzione. Se è necessario eliminare il backup, attendere che sia stato completato, quindi seguire le istruzioni riportate in <<Eliminare i backup>>. Per eliminare un backup non riuscito, https://docs.netapp.com/us-en/astra-automation-2204/index.html["Utilizzare l'API di controllo Astra"^].
 
 
 NOTE: Dopo un'operazione di protezione dei dati (clone, backup, ripristino) e il successivo ridimensionamento persistente del volume, si verifica un ritardo di venti minuti prima che le nuove dimensioni del volume vengano visualizzate nell'interfaccia utente. L'operazione di protezione dei dati viene eseguita correttamente in pochi minuti ed è possibile utilizzare il software di gestione per il back-end dello storage per confermare la modifica delle dimensioni del volume.
@@ -137,7 +137,7 @@ Astra Control Center elimina lo snapshot.
 Eliminare i backup pianificati o on-demand non più necessari.
 
 
-NOTE: Non esiste alcun modo per interrompere un backup in esecuzione. Se è necessario eliminare il backup, attendere che sia stato completato, quindi seguire queste istruzioni. Per eliminare un backup non riuscito, https://docs.netapp.com/us-en/astra-automation/index.html["Utilizzare l'API di controllo Astra"^].
+NOTE: Non esiste alcun modo per interrompere un backup in esecuzione. Se è necessario eliminare il backup, attendere che sia stato completato, quindi seguire queste istruzioni. Per eliminare un backup non riuscito, https://docs.netapp.com/us-en/astra-automation-2204/index.html["Utilizzare l'API di controllo Astra"^].
 
 . Selezionare *applicazioni*, quindi selezionare il nome di un'applicazione.
 . Selezionare *Data Protection* (protezione dati).

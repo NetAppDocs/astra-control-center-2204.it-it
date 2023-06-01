@@ -15,8 +15,7 @@ Scopri come implementare MariaDB da https://bitnami.com/stack/mariadb/helm["Graf
 
 MariaDB è un'applicazione validata per Astra.
 
-* https://docs.netapp.com/us-en/astra/learn/validated-vs-standard.html["Scopri la differenza tra un'applicazione validata e un'applicazione standard in Astra Control Service"^].
-* https://docs.netapp.com/us-en/astra-control-center/concepts/validated-vs-standard.html["Scopri la differenza tra un'applicazione validata e un'applicazione standard in Astra Control Center"^].
+* https://docs.netapp.com/us-en/astra-control-center-2204/concepts/validated-vs-standard.html#validated-apps["Scopri la differenza tra un'applicazione validata e un'applicazione standard in Astra Control"^].
 
 
 Queste istruzioni sono valide sia per Astra Control Service che per Astra Control Center.

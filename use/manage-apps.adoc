@@ -80,7 +80,7 @@ Per gestire le applicazioni, è possibile eseguire le seguenti attività:
 
 TIP: Astra Control non è un'applicazione standard, ma un'applicazione di sistema. Non si dovrebbe tentare di gestire Astra Control da solo. Per impostazione predefinita, Astra Control non viene visualizzato per la gestione. Per visualizzare le applicazioni di sistema, utilizza il filtro "Mostra app di sistema".
 
-Per istruzioni su come gestire le applicazioni utilizzando l'API Astra Control, vedere link:https://docs.netapp.com/us-en/astra-automation/["Astra Automation e informazioni API"^].
+Per istruzioni su come gestire le applicazioni utilizzando l'API Astra Control, vedere link:https://docs.netapp.com/us-en/astra-automation-2204/["Astra Automation e informazioni API"^].
 
 
 NOTE: Dopo un'operazione di protezione dei dati (clone, backup, ripristino) e il successivo ridimensionamento persistente del volume, si verifica un ritardo di venti minuti prima che le nuove dimensioni del volume vengano visualizzate nell'interfaccia utente. L'operazione di protezione dei dati viene eseguita correttamente in pochi minuti ed è possibile utilizzare il software di gestione per il back-end dello storage per confermare la modifica delle dimensioni del volume.
@@ -211,5 +211,5 @@ TIP: Astra Control non è un'applicazione standard, ma un'applicazione di sistem
 
 == Trova ulteriori informazioni
 
-* https://docs.netapp.com/us-en/astra-automation/index.html["Utilizzare l'API di controllo Astra"^]
+* https://docs.netapp.com/us-en/astra-automation-2204/index.html["Utilizzare l'API di controllo Astra"^]
 

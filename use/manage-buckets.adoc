@@ -33,7 +33,7 @@ Un bucket può trovarsi in uno dei seguenti stati:
 * Rimosso: Il bucket non è attualmente accessibile.
 
 
-Per istruzioni su come gestire i bucket utilizzando l'API Astra Control, vedere link:https://docs.netapp.com/us-en/astra-automation/["Astra Automation e informazioni API"^].
+Per istruzioni su come gestire i bucket utilizzando l'API Astra Control, vedere link:https://docs.netapp.com/us-en/astra-automation-2204/["Astra Automation e informazioni API"^].
 
 È possibile eseguire queste attività relative alla gestione dei bucket:
 
@@ -97,7 +97,7 @@ TIP: Il primo set di credenziali aggiunto ad Astra Control è sempre in uso perc
 
 NOTE: Se si rimuovono le credenziali bucket attive, vedere https://kb.netapp.com/Advice_and_Troubleshooting/Cloud_Services/Astra/Deleting_active_S3_bucket_credentials_leads_to_spurious_500_errors_reported_in_the_UI["risoluzione dei problemi relativi alla rimozione delle credenziali bucket"].
 
-Per istruzioni su come rimuovere le credenziali S3 utilizzando l'API Astra Control, vedere link:https://docs.netapp.com/us-en/astra-automation/["Astra Automation e informazioni API"^].
+Per istruzioni su come rimuovere le credenziali S3 utilizzando l'API Astra Control, vedere link:https://docs.netapp.com/us-en/astra-automation-2204/["Astra Automation e informazioni API"^].
 
 
 
@@ -130,5 +130,5 @@ NOTE: Astra Control garantisce innanzitutto che non vi siano policy di pianifica
 
 == Trova ulteriori informazioni
 
-* https://docs.netapp.com/us-en/astra-automation/index.html["Utilizzare l'API di controllo Astra"^]
+* https://docs.netapp.com/us-en/astra-automation-2204/index.html["Utilizzare l'API di controllo Astra"^]
 

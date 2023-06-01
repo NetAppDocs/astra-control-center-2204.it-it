@@ -78,8 +78,7 @@ Stesse funzionalità su entrambe le piattaforme con eccezioni al backend dello s
 
 NetApp ha validato alcune applicazioni per garantire la sicurezza e la coerenza di snapshot e backup.
 
-* https://docs.netapp.com/us-en/astra/learn/validated-vs-standard.html["Scopri la differenza tra un'applicazione validata e un'applicazione standard in Astra Control Service"^].
-* https://docs.netapp.com/us-en/astra-control-center/concepts/validated-vs-standard.html["Scopri la differenza tra un'applicazione validata e un'applicazione standard in Astra Control Center"^].
+* https://docs.netapp.com/us-en/astra-control-center-2204/concepts/validated-vs-standard.html#validated-apps["Scopri la differenza tra un'applicazione validata e un'applicazione standard in Astra Control"^].
 
 
 Indipendentemente dal tipo di applicazione utilizzata con Astra Control, è sempre necessario testare autonomamente il flusso di lavoro di backup e ripristino per assicurarsi di poter soddisfare i requisiti di disaster recovery.
@@ -170,7 +169,7 @@ Astra Control Center esegue questa operazione:
 * https://docs.netapp.com/us-en/astra-control-center/index.html["Documentazione di Astra Control Center"^]
 * https://docs.netapp.com/us-en/astra-data-store/index.html["Documentazione di Astra Data Store"]
 * https://docs.netapp.com/us-en/trident/index.html["Documentazione di Astra Trident"^]
-* https://docs.netapp.com/us-en/astra-automation/index.html["Utilizzare l'API di controllo Astra"^]
+* https://docs.netapp.com/us-en/astra-automation-2204/index.html["Utilizzare l'API di controllo Astra"^]
 * https://docs.netapp.com/us-en/cloudinsights/["Documentazione Cloud Insights"^]
 * https://docs.netapp.com/us-en/ontap/index.html["Documentazione ONTAP"^]
 

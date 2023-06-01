@@ -278,5 +278,5 @@ Ora che hai verificato che i prerequisiti sono stati soddisfatti, sei pronto lin
 == Trova ulteriori informazioni
 
 * https://docs.netapp.com/us-en/trident/index.html["Documentazione di Trident"^]
-* https://docs.netapp.com/us-en/astra-automation/index.html["Utilizzare l'API di controllo Astra"^]
+* https://docs.netapp.com/us-en/astra-automation-2204/index.html["Utilizzare l'API di controllo Astra"^]
 
