@@ -6,7 +6,7 @@ Scopri come implementare Jenkins da https://bitnami.com/stack/jenkins/helm["Graf
 
 Jenkins è un'applicazione validata per Astra Control.
 
-* https://docs.netapp.com/us-en/astra-control-center-2204/concepts/validated-vs-standard.html#validated-apps["Scopri la differenza tra un'applicazione validata e un'applicazione standard in Astra Control"^].
+* link:../concepts/validated-vs-standard.html#validated-apps["Scopri la differenza tra un'applicazione validata e un'applicazione standard in Astra Control"^].
 
 
 Queste istruzioni sono valide sia per Astra Control Service che per Astra Control Center.

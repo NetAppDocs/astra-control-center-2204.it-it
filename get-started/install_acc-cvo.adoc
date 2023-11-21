@@ -344,11 +344,11 @@ Vedere https://docs.netapp.com/us-en/cloud-manager-setup-admin/concept-accounts-
 
 Quindi, configurare Azure per creare una rete virtuale, configurare istanze di calcolo, creare un container Azure Blob, creare un Azure Container Register (ACR) per ospitare le immagini di Astra Control Center e inviare le immagini a questo registro.
 
-Seguire la documentazione di Azure per completare i seguenti passaggi. Vedere https://docs.openshift.com/container-platform/4.8/installing/installing_aws/installing-azure-default.html["Installazione del cluster OpenShift su Azure"^].
+Seguire la documentazione di Azure per completare i seguenti passaggi. Vedere https://docs.openshift.com/["Installazione del cluster OpenShift su Azure"^].
 
 . Creare una rete virtuale Azure.
 . Esaminare le istanze di calcolo. Si tratta di un server bare metal o di macchine virtuali in Azure.
-. Se il tipo di istanza non corrisponde già ai requisiti minimi di risorsa Astra per i nodi master e worker, modificare il tipo di istanza in Azure per soddisfare i requisiti Astra. Vedere link:../get-started/requirements.html["Requisiti di Astra Control Center"].
+. Se il tipo di istanza non corrisponde già ai requisiti minimi di risorsa Astra per i nodi master e worker, modificare il tipo di istanza in Azure per soddisfare i requisiti Astra.  Vedere link:../get-started/requirements.html["Requisiti di Astra Control Center"].
 . Creare almeno un container Azure Blob per memorizzare i backup.
 . Creare un account storage. Per creare un container da utilizzare come bucket in Astra Control Center è necessario un account storage.
 . Creare un segreto, necessario per l'accesso al bucket.

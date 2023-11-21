@@ -69,7 +69,7 @@ Stesse funzionalità su entrambe le piattaforme con eccezioni al backend dello s
 
 NetApp ha validato alcune applicazioni per garantire la sicurezza e la coerenza di snapshot e backup.
 
-* https://docs.netapp.com/us-en/astra-control-center-2204/concepts/validated-vs-standard.html#validated-apps["Scopri la differenza tra un'applicazione validata e un'applicazione standard in Astra Control"^].
+* link:../concepts/validated-vs-standard.html#validated-apps["Scopri la differenza tra un'applicazione validata e un'applicazione standard in Astra Control"^].
 
 
 Indipendentemente dal tipo di applicazione utilizzata con Astra Control, è sempre necessario testare autonomamente il flusso di lavoro di backup e ripristino per assicurarsi di poter soddisfare i requisiti di disaster recovery.
